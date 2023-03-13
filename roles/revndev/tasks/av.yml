@@ -6,44 +6,43 @@
 
 # Did originally have this via regedit but a computer restart enabled it all.
 # There is a very decent way via safe mode but meh
-- name: Powershell - Change Defender Settings
-  ansible.windows.win_powershell:
-    script: |
-      Set-MpPreference -{{ item }} $true -Force
-  async: '{{ Timeout }}'
-  poll: 0
-  become: true
-  become_method: runas
-  become_user: '{{ Comp_User }}'
-  loop:
-    - DisableArchiveScanning
-    - DisableAutoExclusions
-    - DisableBehaviorMonitoring 
-    - DisableBlockAtFirstSeen
-    - DisableCatchupFullScan
-    - DisableCatchupQuickScan
-    - DisableCpuThrottleOnIdleScans
-    - DisableDatagramProcessing
-    - DisableDnsOverTcpParsing
-    - DisableDnsParsing
-    - DisableEmailScanning
-    - DisableFtpParsing
-    - DisableGradualRelease
-    - DisableHttpParsing
-    - DisableInboundConnectionFiltering
-    - DisableIOAVProtection
-    - DisableNetworkProtectionPerfTelemetry
-    - DisablePrivacyMode
-    - DisableRdpParsing
-    - DisableRealtimeMonitoring
-    - DisableRemovableDriveScanning
-    - DisableRestorePoint
-    - DisableScanningMappedNetworkDrivesForFullScan
-    - DisableScanningNetworkFiles
-    - DisableScriptScanning
-    - DisableSmtpParsing
-    - DisableSshParsing
-    - DisableTlsParsing
+#- name: Powershell - Change Defender Settings
+#  ansible.windows.win_powershell:
+##    script: |
+ #     Set-MpPreference -{{ item }} $true -Force
+ # async: '{{ Timeout }}'
+ # poll: 0
+ # become: true
+ # become_method: runas
+ # become_user: '{{ Comp_User }}'
+ # loop:
+ #   - DisableArchiveScanning
+ #   - DisableAutoExclusions
+ #   - DisableBehaviorMonitoring 
+ #   - DisableBlockAtFirstSeen
+ #   - DisableCatchupFullScan
+ #   - DisableCatchupQuickScan
+ #   - DisableCpuThrottleOnIdleScans
+ #   - DisableDatagramProcessing
+ #   - DisableDnsOverTcpParsing
+ #   - DisableDnsParsing
+ #   - DisableEmailScanning
+ #   - DisableGradualRelease
+ #   - DisableHttpParsing
+ #   - DisableInboundConnectionFiltering
+ #   - DisableIOAVProtection
+ #   - DisableNetworkProtectionPerfTelemetry
+ #   - DisablePrivacyMode
+ #   - DisableRdpParsing
+ #   - DisableRealtimeMonitoring
+ #   - DisableRemovableDriveScanning
+ #   - DisableRestorePoint
+ #   - DisableScanningMappedNetworkDrivesForFullScan
+ #   - DisableScanningNetworkFiles
+ #   - DisableScriptScanning
+ #   - DisableSmtpParsing
+ #   - DisableSshParsing
+ #   - DisableTlsParsing
 
 - name: Powershell - Add Exclusions
   ansible.windows.win_powershell:
@@ -52,4 +51,22 @@
       Set-MpPreference -ExclusionExtension ".exe" -Force
       Set-MpPreference -ExclusionExtension ".ps1" -Force
 
-  
+
+- name: Copying a crappy PS1 script as AV won't turn off....
+  ansible.windows.win_copy:
+    src: DisableDefender.ps1
+    dest: C:\
+
+# Did originally have this via regedit but a computer restart enabled it all.
+# There is a very decent way via safe mode but meh- name: Powershell - Change ExecutionPolicy
+- name: Create Schtask to disable Defender
+  ansible.windows.win_powershell:
+    script: |
+      $taskname = "ByeDefender"
+      $username = "{{ Comp_Name }}\{{ Comp_User }}"
+      $action = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "C:\DisableDefender.ps1"
+      $trigger = New-ScheduledTaskTrigger -AtLogOn -User "$username"
+      $principal = New-ScheduledTaskPrincipal "NT AUTHORITY\SYSTEM"
+      $settings = New-ScheduledTaskSettingsSet
+      $task = New-ScheduledTask -Action $action -Trigger $trigger -Principal $principal -Settings $settings
+      Register-ScheduledTask $taskname -InputObject $task
