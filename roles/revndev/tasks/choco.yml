@@ -4,13 +4,6 @@
     name: chocolatey
     state: present
     source: https://community.chocolatey.org/install.ps1
-  
-- name: Install disabledefender-winconfig v0.0.1
-  win_chocolatey:
-    name: disabledefender-winconfig
-    state: present
-    version: 0.0.1
-    pinned: yes
 
 - name: Install all Choco_Installs packages
   win_chocolatey:
