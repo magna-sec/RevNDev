@@ -1,0 +1,68 @@
+---
+Comp_Name: revndev
+Comp_User: magna
+Timeout: 2000
+
+Choco_Installs:
+ - apimonitor
+ - choosenim
+ - die
+ - dnspy
+ - dotnetfx
+ - Everything
+ - explorersuite
+ - firefox
+ - ghidra
+ - git
+ - go 
+ - hxd
+ - ida-free
+ - io-ninja 
+ - nim 
+ - ollydbg
+ - pebear
+ - rust 
+ - sysinternals
+ - visualstudio2022community
+ - vscode 
+ - windows-sdk-10-version-2004-windbg
+ - microsoft-windows-terminal
+ - wireshark
+ - x64dbg.portable
+
+Bloatware:
+  - Microsoft.BingNews
+  - Microsoft.BingWeather
+  - Microsoft.GamingApp
+  - Microsoft.GetHelp
+  - Microsoft.Getstarted
+  - Microsoft.Messaging
+  - Microsoft.Microsoft3DViewer
+  - Microsoft.MicrosoftOfficeHub
+  - Microsoft.MicrosoftSolitaireCollection
+  - Microsoft.MicrosoftStickyNotes
+  - Microsoft.MixedReality.Portal
+  - Microsoft.Office.OneNote
+  - Microsoft.OneConnect
+  - Microsoft.People
+  - Microsoft.PowerAutomateDesktop
+  - Microsoft.Print3D
+  - Microsoft.ScreenSketch
+  - Microsoft.SkypeApp
+  - Microsoft.Todos
+  - Microsoft.WindowsAlarms
+  - Microsoft.Wallet
+  - Microsoft.WindowsCamera
+  - microsoft.windowscommunicationsapps
+  - Microsoft.WindowsFeedbackHub
+  - Microsoft.WindowsMaps
+  - Microsoft.WindowsSoundRecorder
+  - Microsoft.Xbox
+  - Microsoft.Xbox.TCUI
+  - Microsoft.XboxApp
+  - Microsoft.XboxGameOverlay
+  - Microsoft.XboxSpeechToTextOverlay
+  - Microsoft.YourPhone
+  - Microsoft.ZuneMusic
+  - Microsoft.ZuneVideo
+  - MicrosoftTeams
