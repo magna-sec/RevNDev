@@ -23,6 +23,11 @@ https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.ht
 2. Run the commands in `winrm.txt` on said workstation.
 3. Run `ansible-playbook -i inventory.yml main.yml`
 
+Windows Defender is finncky so if you want a hard "OFF" do:
+1. `msconfig` -> safe made on -> reboots
+2. Run `C:\DisableDefender.ps1` in powershell
+3. `msconfig` -> safe made off -> reboots
+
 ## Current Abilities
 - Installs various tooling that can be easily seen in `roles/revndev/defaults/main.yml`.
 - Removes annoying bloatware from the system.

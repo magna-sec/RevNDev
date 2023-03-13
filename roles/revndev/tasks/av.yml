@@ -6,43 +6,43 @@
 
 # Did originally have this via regedit but a computer restart enabled it all.
 # There is a very decent way via safe mode but meh
-#- name: Powershell - Change Defender Settings
-#  ansible.windows.win_powershell:
-##    script: |
- #     Set-MpPreference -{{ item }} $true -Force
- # async: '{{ Timeout }}'
- # poll: 0
- # become: true
- # become_method: runas
- # become_user: '{{ Comp_User }}'
- # loop:
- #   - DisableArchiveScanning
- #   - DisableAutoExclusions
- #   - DisableBehaviorMonitoring 
- #   - DisableBlockAtFirstSeen
- #   - DisableCatchupFullScan
- #   - DisableCatchupQuickScan
- #   - DisableCpuThrottleOnIdleScans
- #   - DisableDatagramProcessing
- #   - DisableDnsOverTcpParsing
- #   - DisableDnsParsing
- #   - DisableEmailScanning
- #   - DisableGradualRelease
- #   - DisableHttpParsing
- #   - DisableInboundConnectionFiltering
- #   - DisableIOAVProtection
- #   - DisableNetworkProtectionPerfTelemetry
- #   - DisablePrivacyMode
- #   - DisableRdpParsing
- #   - DisableRealtimeMonitoring
- #   - DisableRemovableDriveScanning
- #   - DisableRestorePoint
- #   - DisableScanningMappedNetworkDrivesForFullScan
- #   - DisableScanningNetworkFiles
- #   - DisableScriptScanning
- #   - DisableSmtpParsing
- #   - DisableSshParsing
- #   - DisableTlsParsing
+- name: Powershell - Change Defender Settings
+  ansible.windows.win_powershell:
+    script: |
+      Set-MpPreference -{{ item }} $true -Force
+  async: '{{ Timeout }}'
+  poll: 0
+  become: true
+  become_method: runas
+  become_user: '{{ Comp_User }}'
+  loop:
+    - DisableArchiveScanning
+    - DisableAutoExclusions
+    - DisableBehaviorMonitoring 
+    - DisableBlockAtFirstSeen
+    - DisableCatchupFullScan
+    - DisableCatchupQuickScan
+    - DisableCpuThrottleOnIdleScans
+    - DisableDatagramProcessing
+    - DisableDnsOverTcpParsing
+    - DisableDnsParsing
+    - DisableEmailScanning
+    - DisableGradualRelease
+    - DisableHttpParsing
+    - DisableInboundConnectionFiltering
+    - DisableIOAVProtection
+    - DisableNetworkProtectionPerfTelemetry
+    - DisablePrivacyMode
+    - DisableRdpParsing
+    - DisableRealtimeMonitoring
+    - DisableRemovableDriveScanning
+    - DisableRestorePoint
+    - DisableScanningMappedNetworkDrivesForFullScan
+    - DisableScanningNetworkFiles
+    - DisableScriptScanning
+    - DisableSmtpParsing
+    - DisableSshParsing
+    - DisableTlsParsing
 
 - name: Powershell - Add Exclusions
   ansible.windows.win_powershell:
