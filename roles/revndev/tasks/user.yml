@@ -1,0 +1,10 @@
+---
+- name: Ensure user '{{ Comp_User }}' is present
+  ansible.windows.win_user:
+    name: '{{ Comp_User }}'
+    password: Passw0rd!
+    state: present
+    groups:
+      - Users
+      - Administrators
+

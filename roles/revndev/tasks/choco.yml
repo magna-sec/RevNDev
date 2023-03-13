@@ -1,0 +1,20 @@
+---
+- name: Ensure Chocolatey installed from external repo
+  win_chocolatey:
+    name: chocolatey
+    state: present
+    source: https://community.chocolatey.org/install.ps1
+  
+- name: Install disabledefender-winconfig v0.0.1
+  win_chocolatey:
+    name: disabledefender-winconfig
+    state: present
+    version: 0.0.1
+    pinned: yes
+
+- name: Install all Choco_Installs packages
+  win_chocolatey:
+    name: '{{ item }}'
+    state: present
+    ignore_checksums: true #ida-free has a bad checksum (probably really safe that)
+  loop: '{{ Choco_Installs }}'

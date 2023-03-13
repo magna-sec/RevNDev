@@ -1,0 +1,9 @@
+---
+# https://github.com/AlexNabokikh/windows-playbook/blob/master/tasks/debloat.yml
+- name: Remove bloatware
+  ansible.windows.win_package:
+    product_id: "{{ item }}"
+    state: absent
+  async: '{{ Timeout }}'
+  poll: 0
+  loop: "{{ Bloatware }}"

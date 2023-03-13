@@ -1,0 +1,31 @@
+
+---
+# Remove shortcuts from desktop
+# https://github.com/AlexNabokikh/windows-playbook/blob/master/tasks/desktop.yml
+- name: Get user profile path.
+  ansible.windows.win_command: powershell.exe -
+  args:
+    stdin: echo $HOME
+  become_method: runas
+  become_user: '{{ Comp_User }}'
+  register: user_home_path
+
+- name: Get shortcuts.
+  ansible.windows.win_find:
+    paths:
+      - C:\Users\Public\Desktop
+      - '{{ user_home_path.stdout | trim }}\Desktop'
+      - '{{ user_home_path.stdout | trim }}\OneDrive\Desktop'
+    patterns: "*.lnk"
+  become_method: runas
+  become_user: '{{ Comp_User }}'
+  register: shortcuts
+
+- name: Remove shortcuts from the Desktop.
+  ansible.windows.win_file:
+    path: "{{ item.path }}"
+    state: absent
+  loop: "{{ shortcuts.files | unique }}"
+  become_method: runas
+  become_user: '{{ Comp_User }}'
+  when: shortcuts.files | length > 0
