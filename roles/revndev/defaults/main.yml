@@ -20,6 +20,7 @@ Choco_Installs:
  - io-ninja 
  - nim 
  - ollydbg
+ - openjdk
  - pebear
  - rust 
  - sysinternals
