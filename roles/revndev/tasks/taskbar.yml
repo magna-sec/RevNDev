@@ -1,14 +1,14 @@
 ---
 # https://github.com/AlexNabokikh/windows-playbook/blob/master/tasks/taskbar.yml
-- name: Unpin 'Search' from Taskbar.
-  ansible.windows.win_regedit:
-    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Search
-    name: SearchboxTaskbarMode
-    data: 0
-    type: dword
-  become: true
-  become_method: runas
-  become_user: '{{ Comp_User }}'
+#- name: Unpin 'Search' from Taskbar.
+#  ansible.windows.win_regedit:
+#    path: HKCU:\Software\Microsoft\Windows\CurrentVersion\Search
+#    name: SearchboxTaskbarMode
+#    data: 0
+#    type: dword
+#  become: true
+#  become_method: runas
+#  become_user: '{{ Comp_User }}'
 
 - name: Unpin Task View, Chat and Cortana from Taskbar.
   ansible.windows.win_regedit:
@@ -19,7 +19,6 @@
   loop:
     - ShowCortanaButton
     - ShowTaskViewButton
-    - TaskbarDa
     - TaskbarMn
   become: true
   become_method: runas

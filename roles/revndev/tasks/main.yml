@@ -2,9 +2,8 @@
 - include_tasks: user.yml
 - include_tasks: av.yml
 - include_tasks: choco.yml
-- include_tasks: wallpaper.yml
 - include_tasks: shortcuts.yml
 - include_tasks: taskbar.yml
 - include_tasks: debloat.yml
+- include_tasks: tooling.yml
 - include_tasks: hostname.yml
-

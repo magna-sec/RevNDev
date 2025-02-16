@@ -7,3 +7,4 @@
   async: '{{ Timeout }}'
   poll: 0
   loop: "{{ Bloatware }}"
+  ignore_errors: yes

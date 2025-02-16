@@ -1,0 +1,35 @@
+---
+- name: Ensure the Tooling directory exists
+  win_file:
+    path: "{{ Comp_Tooling }}"
+    state: directory
+
+- name: Create a CheatEngine shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files\Cheat Engine 7.5\CheatEngine.exe
+    dest: "{{ Comp_Tooling }}\\CheatEngine.lnk"
+
+- name: Create a Wireshark shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files\Wireshark\Wireshark.exe
+    dest: "{{ Comp_Tooling }}\\Wireshark.lnk"
+
+- name: Create a CFF Explorer shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files\NTCore\Explorer Suite\CFF Explorer.exe
+    dest: "{{ Comp_Tooling }}\\CFF Explorer.lnk"
+
+- name: Create a HxD shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files\HxD\HxD.exe
+    dest: "{{ Comp_Tooling }}\\HxD.lnk"
+
+- name: Create an IDA shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files\IDA Freeware 8.3\ida64.exe
+    dest: "{{ Comp_Tooling }}\\ida.lnk"
+
+- name: Create a Process Hacker shortcut on the desktop
+  community.windows.win_shortcut:
+    src: C:\Program Files\Process Hacker 2\ProcessHacker.exe
+    dest: "{{ Comp_Tooling }}\\ProcessHacker.lnk"

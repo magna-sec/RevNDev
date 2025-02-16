@@ -1,6 +1,7 @@
 ---
 Comp_Name: revndev
 Comp_User: magna
+Comp_Tooling: C:\users\{{ Comp_User }}\Desktop\Tooling
 Timeout: 2000
 
 Choco_Installs:
@@ -17,7 +18,6 @@ Choco_Installs:
  - go 
  - hxd
  - ida-free
- - io-ninja 
  - nim 
  - ollydbg
  - openjdk
@@ -27,9 +27,12 @@ Choco_Installs:
  - visualstudio2022community
  - vscode 
  - windows-sdk-10-version-2004-windbg
- - microsoft-windows-terminal
  - wireshark
  - x64dbg.portable
+ - pebear
+ - processhacker
+ - x64dbg.portable
+ - cheatengine
 
 Bloatware:
   - Microsoft.BingNews
